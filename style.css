@@ -65,7 +65,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:700;margin:0;color:var(--navy)}
             rgba(10, 35, 65, 0.30),
             rgba(10, 35, 65, 0.40)
         ),
-        url("images/school.jpg");
+        url("images/school-hero.jpg");
 
     background-size: cover;
     background-position: center;
