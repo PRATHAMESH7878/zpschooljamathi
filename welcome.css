@@ -1,0 +1,63 @@
+/* Welcome page: ring the school bell, zoom into the school, open the website */
+:root{
+  --navy:#0F2A4A; --navy-deep:#0B2038; --accent:#E8A33D;
+  --serif:'Noto Serif',Georgia,serif;
+  --sans:'Noto Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{overflow:hidden;background:var(--navy-deep);color:#fff;font-family:var(--sans);line-height:1.5}
+[lang="mr"]{font-family:'Noto Sans Devanagari','Noto Sans',system-ui,sans-serif}
+
+/* The photo. object-position keeps the entrance in view on tall phone screens. */
+.stage{position:fixed;inset:0;display:flex;overflow:hidden}
+.scene{position:absolute;inset:0;transform-origin:62% 58%;will-change:transform}
+.scene img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:62% 60%}
+.tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,32,56,.58) 0%,rgba(11,32,56,.24) 26%,rgba(11,32,56,0) 42%,rgba(11,32,56,0) 60%,rgba(11,32,56,.66) 100%)}
+.fade{position:absolute;inset:0;z-index:3;background:#FFF8E8;opacity:0;pointer-events:none}
+
+/* Name at the top (in the sky), bell at the bottom (on the courtyard) */
+.content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:100%;padding:clamp(20px,5vh,48px) 24px clamp(64px,10vh,96px);text-align:center;transition:opacity .6s ease,transform .6s ease}
+.top{display:flex;flex-direction:column;align-items:center;max-width:1000px}
+.crest{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--navy);border:2px solid rgba(255,255,255,.6);color:#fff;font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:.04em}
+.kicker{margin:14px 0 6px;font-size:13px;line-height:20px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FFD27A;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.title{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(26px,4.2vw,46px);line-height:1.2;color:#fff;text-wrap:balance;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.welcome{margin:10px 0 0;font-size:clamp(17px,2.2vw,22px);line-height:1.5;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+
+.bell-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px;background:none;border:0;color:#fff;font-family:var(--sans);cursor:pointer}
+.bell-circle{position:relative;display:flex;align-items:center;justify-content:center;width:76px;height:76px;border-radius:50%;background:rgba(11,32,56,.92);border:2px solid var(--accent)}
+.bell-circle::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--accent);animation:halo 2s ease-out infinite}
+.bell-btn:hover .bell-circle{background:var(--navy)}
+.bell-btn:focus-visible{outline:none}
+.bell-btn:focus-visible .bell-circle{outline:3px solid #fff;outline-offset:5px}
+.bell-icon{width:38px;height:38px;transform-origin:50% 12%}
+.bell-label{margin-top:4px;font-size:16px;line-height:24px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.65)}
+.bell-label-mr{font-size:14px;line-height:20px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.65)}
+
+.skip{position:absolute;left:0;right:0;bottom:10px;z-index:2;margin:0 auto;width:max-content;max-width:calc(100% - 32px);min-height:44px;padding:0 16px;background:none;border:0;color:#fff;font-family:var(--sans);font-size:14px;text-decoration:underline;text-shadow:0 1px 6px rgba(0,0,0,.7);cursor:pointer}
+.skip:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+.plain-enter{position:fixed;left:50%;bottom:24px;z-index:10;transform:translateX(-50%);padding:14px 24px;background:#fff;color:var(--navy);font-weight:600;text-decoration:none}
+
+/* Animation steps, added one by one by welcome.js */
+.stage.is-ring .bell-icon{animation:ring 1.2s ease-in-out}
+.stage.is-ring .bell-circle::before{animation:none;opacity:0}
+.stage.is-zoom .scene{transform:scale(18);transition:transform 2.7s cubic-bezier(.55,.05,.85,.4)}
+.stage.is-zoom .content{opacity:0;transform:translateY(-10px)}
+.stage.is-zoom .skip{opacity:0;pointer-events:none}
+.stage.is-zoom .fade{opacity:1;transition:opacity .7s ease 1.8s}
+.stage.is-leaving .fade{opacity:1;transition:opacity .5s ease}
+
+@keyframes halo{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@keyframes ring{0%,100%{transform:rotate(0)}15%{transform:rotate(24deg)}30%{transform:rotate(-20deg)}45%{transform:rotate(15deg)}60%{transform:rotate(-10deg)}75%{transform:rotate(5deg)}}
+
+@media (max-width:640px){
+  .bell-circle{width:72px;height:72px}
+  .bell-icon{width:36px;height:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bell-circle::before{animation:none}
+  .stage.is-ring .bell-icon{animation:none}
+  .stage.is-zoom .scene{transform:none;transition:none}
+  .stage.is-zoom .fade{transition:opacity .4s ease}
+}

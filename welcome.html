@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome | P.M Shri Z.P Marathi School, Jamathi</title>
+<meta name="description" content="Welcome to the website of P.M Shri Z.P Marathi School, Jamathi, a PM SHRI school.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' https://ik.imagekit.io data:; frame-src https://www.youtube.com; connect-src 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Noto+Serif:wght@700&family=Noto+Sans+Devanagari:wght@400;600&display=swap">
+<link rel="preload" as="image" href="images/school.jpg">
+<link rel="prefetch" href="index.html">
+<link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+
+<main class="stage" id="stage" aria-label="Welcome">
+
+  <!-- The school photo: images/school.jpg -->
+  <div class="scene" id="scene">
+    <img id="schoolPhoto" src="images/school.jpg" alt="The school building with colourful painted walls and the PM SHRI board">
+    <div class="tint"></div>
+  </div>
+
+  <div class="content">
+    <div class="top">
+      <div class="crest" aria-hidden="true"></div>
+      <div class="kicker">Welcome to</div>
+      <h1 class="title">P.M Shri Z.P Marathi School, Jamathi</h1>
+      <p class="welcome" lang="mr">आपले स्वागत आहे</p>
+    </div>
+
+    <button type="button" class="bell-btn" id="bellBtn" aria-label="Ring the school bell to enter the website">
+      <span class="bell-circle">
+        <svg class="bell-icon" viewBox="0 0 24 24" fill="#E8A33D" aria-hidden="true" focusable="false">
+          <path d="M12 3a1 1 0 0 1 1 1v.7A6 6 0 0 1 18 10.5V15l1.7 2.3a.8.8 0 0 1-.6 1.3H4.9a.8.8 0 0 1-.6-1.3L6 15v-4.5A6 6 0 0 1 11 4.7V4a1 1 0 0 1 1-1z"/>
+          <path d="M9.8 20a2.4 2.4 0 0 0 4.4 0z"/>
+        </svg>
+      </span>
+      <span class="bell-label">Ring the bell to enter</span>
+      <span class="bell-label-mr" lang="mr">प्रवेश करण्यासाठी घंटा वाजवा</span>
+    </button>
+  </div>
+
+  <button type="button" class="skip" id="skipBtn">Skip and enter the website</button>
+  <div class="fade" aria-hidden="true"></div>
+</main>
+
+<noscript><a class="plain-enter" href="index.html">Enter the website</a></noscript>
+
+<script src="welcome.js"></script>
+</body>
+</html>
