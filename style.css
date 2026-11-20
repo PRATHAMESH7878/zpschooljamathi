@@ -123,7 +123,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:700;margin:0;color:var(--navy)}
     .glance {
         background: rgba(15, 42, 74, 0.65);
         padding: 22px;
-        top: 3000px;
+        top: 0;
     }
 }
 
@@ -261,3 +261,115 @@ section{scroll-margin-top:8px}
   .gap-top{margin-top:40px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* =============================================
+   HAMBURGER / MOBILE NAV
+   ============================================= */
+.nav-toggle{
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:12px 0;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:600;
+  color:var(--navy);
+}
+.nav-toggle .bar{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  width:22px;
+}
+.nav-toggle .bar span{
+  display:block;
+  height:2px;
+  background:var(--navy);
+  border-radius:2px;
+  transition:transform .25s,opacity .25s;
+}
+
+/* =============================================
+   RESPONSIVE — TABLET & MOBILE (≤ 768px)
+   ============================================= */
+@media (max-width:768px){
+
+  /* Show hamburger button */
+  .nav-toggle{display:flex}
+
+  /* Hide nav links by default; show when open */
+  .nav{
+    display:none;
+    flex-direction:column;
+    gap:0;
+    padding-bottom:12px;
+    width:100%;
+  }
+  .nav.is-open{display:flex}
+
+  /* Full-width nav links */
+  .nav a{
+    padding:13px 4px;
+    border-bottom:1px solid var(--line);
+    border-bottom-width:1px !important;
+    font-size:16px;
+  }
+  .nav a.active{
+    color:var(--navy);
+    border-left:3px solid var(--accent);
+    padding-left:10px;
+    border-bottom-color:var(--line) !important;
+  }
+  .nav a:hover{border-bottom-color:var(--line) !important}
+
+  /* Header stacks neatly */
+  .site-header .wrap{padding-top:12px;padding-bottom:12px}
+  .brand-name{font-size:19px}
+  .crest{width:52px;height:52px}
+
+  /* Hero: stack text above glance card */
+  .hero .wrap{flex-direction:column;padding-top:40px;padding-bottom:40px;gap:28px}
+  .hero h1{font-size:clamp(26px,7vw,38px)}
+  .hero p{font-size:16px}
+  .glance{max-width:100%;top:0}
+
+  /* Explore cards full-width */
+  .grid{grid-template-columns:1fr}
+
+  /* Contact cards full-width */
+  .contact-grid{flex-direction:column}
+  .contact-card{flex:unset}
+
+  /* About section */
+  .about-grid{gap:32px}
+  .head-card{max-width:100%}
+
+  /* Tiles stack */
+  .tiles{flex-direction:column}
+  .tile{flex:unset}
+
+  /* People grid: 2 columns on tablet, 1 on phone */
+  .people{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+
+  /* Feature block (headmaster) */
+  .feature{flex-direction:column}
+  .feature .photo-frame{width:100%;max-width:260px}
+
+  /* Strip: stack on small screens */
+  .strip .wrap{flex-direction:column;gap:4px}
+
+  /* Footer */
+  .site-footer .wrap{flex-direction:column;text-align:center}
+}
+
+@media (max-width:420px){
+  .brand-name{font-size:16px}
+  .brand-sub{font-size:11px}
+  .crest{width:44px;height:44px}
+  .people{grid-template-columns:1fr}
+  .actions{flex-direction:column}
+  .btn{width:100%;justify-content:center}
+}

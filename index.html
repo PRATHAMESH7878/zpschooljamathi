@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Redirect first-time visitors to the welcome page -->
+<script>try{if(!sessionStorage.getItem('introSeen')&&location.search.indexOf('skipwelcome')<0)location.replace('welcome.html')}catch(e){}</script>
 <title>P.M Shri Z.P Marathi School, Jamathi | PM SHRI School</title>
 <meta name="description" content="Official website of P.M Shri Z.P Marathi School, Jamathi, a PM SHRI school.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' https://ik.imagekit.io data:; frame-src https://www.youtube.com; connect-src 'none';">
@@ -38,7 +40,11 @@
 </header>
   <div class="nav-bar">
     <div class="wrap">
-      <nav class="nav" aria-label="Main">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">
+        <span class="bar"><span></span><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+      <nav class="nav" id="mainNav" aria-label="Main">
         <a href="index.html" class="active">Home</a>
         <a href="index.html#about">About</a>
         <a href="index.html#pmshri">PM SHRI</a>
@@ -195,5 +201,22 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var btn = document.getElementById('navToggle');
+  var nav = document.getElementById('mainNav');
+  if(!btn||!nav) return;
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target)&&!nav.contains(e.target)){
+      nav.classList.remove('is-open');
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+</script>
 </body>
 </html>
