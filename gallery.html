@@ -102,23 +102,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var btn = document.getElementById('navToggle');
-  var nav = document.getElementById('mainNav');
-  if(!btn||!nav) return;
-  btn.addEventListener('click', function(){
-    var open = nav.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', open);
-  });
-  document.addEventListener('click', function(e){
-    if(!btn.contains(e.target)&&!nav.contains(e.target)){
-      nav.classList.remove('is-open');
-      btn.setAttribute('aria-expanded','false');
-    }
-  });
-})();
-</script>
+<script src="nav.js"></script>
 
 <script src="gallery-data.js"></script>
 <script src="gallery.js"></script>
